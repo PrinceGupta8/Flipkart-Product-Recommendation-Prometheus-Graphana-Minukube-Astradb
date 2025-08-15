@@ -15,11 +15,11 @@ class RAGChainBuilder:
 
     def _get_history(self,session_id:str)-> BaseChatMessageHistory:
         if session_id not in self.history_store:
-            self.history_store[session_id]=ChatMessageHistory
+            self.history_store[session_id]=ChatMessageHistory()
         return self.history_store[session_id]
     
     def build_chain(self):
-        retriever=self.vstore.as_retriever({"search_keyword":3})
+        retriever=self.vstore.as_retriever(search_kwargs={"k":3})
         context_prompt=ChatPromptTemplate.from_messages(
             [
              ("system","you have chat history and user input, you have to make a standalone question"),

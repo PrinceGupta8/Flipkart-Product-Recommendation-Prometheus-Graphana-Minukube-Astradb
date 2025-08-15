@@ -21,7 +21,7 @@ def create_app():
     @app.route("/get",methods=["POST"])
     def get_response():
         user_input=request.form["msg"]
-        response=rag_chain.invoke({"input":user_input},config={"configurable":{"session_id":"user_session"}})['answer']
+        response = rag_chain.invoke({"input": user_input}, config={"configurable": {"session_id": "user_session"}})['answer']
         return response
     
     @app.route("/metrics")
